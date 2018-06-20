@@ -1,13 +1,42 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1> Suka</h1>
-</body>
-</html>
+@extends('layouts.admin')
+
+
+@section('content')
+
+
+    <h1>Users</h1>
+
+
+
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Created</th>
+            <th scope="col">Updated</th>
+            <th scope="col">Status</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @if($users)
+        @foreach($users as $user)
+        <tr>
+            <th scope="row">{{$user->id}}</th>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
+            <td>{{$user->role->name}}</td>
+            <td>{{$user->created_at->diffForHumans()}}</td>
+            <td>{{$user->updated_at->diffForHumans()}}</td>
+            <td>{{$user->is_active == 1 ? "Active" : "Not Active"}}</td>
+        </tr>
+            @endforeach
+            @endif
+        </tbody>
+    </table>
+
+
+@endsection
