@@ -7,22 +7,23 @@
     <h1>Create page</h1>
 
 
-            {!! Form::open(['method'=>'POST', 'action'=>'AdminPostsController@store']) !!}
+            {!! Form::open(['method'=>'POST', 'action'=>'AdminPostsController@store', 'files'=>true]) !!}
                 <div class="form-group">
                     {!! Form::label('title', 'Title:') !!}
                     {!! Form::text('title', null, ['class'=>'form-control']) !!}
                     </div>
                 <div class="form-group">
                     {!! Form::label('category_id', 'Category:') !!}
-                    {!! Form::text('category_id', null, ['class'=>'form-control']) !!}
+                    {!! Form::select('category_id', array(''=>'Select category') + $categories, null, ['class'=>'form-control']) !!}
                 </div>
+
                 <div class="form-group">
                     {!! Form::label('body', 'Content:') !!}
-                    {!! Form::text('body', null, ['class'=>'form-control']) !!}
+                    {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('title', 'Title:') !!}
-                    {!! Form::select('title',array(''=>'Choose Author'),  null, ['class'=>'form-control']) !!}
+                    {!! Form::label('photo_id', 'Photo:') !!}
+                    {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
                 </div>
 
 
@@ -32,6 +33,21 @@
 
 
                 {!! Form::close() !!}
+
+
+    @if(count($errors) > 0)
+
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+
+
+    @endif
+
 
 
 @endsection

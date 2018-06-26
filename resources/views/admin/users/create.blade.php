@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     {!! Form::label('is_active', 'Status:') !!}
-                    {!! Form::select('is_active', array(''=>'Choose Status', 1=>'Active', 0=>'Not Active'), null, ['class'=>'form-control']) !!}
+                    {!! Form::select('is_active', array(''=>'Choose Status', 1=>'Active', 0=>'Not Active'), null,  ['class'=>'form-control']) !!}
                 </div>
                     <div class="form-group">
                     {!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}

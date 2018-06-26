@@ -3,6 +3,9 @@
 
 @section('content')
 
+    @if(Session::has('deleted_post'))
+        <p class="text-danger bg-danger">{{session('deleted_post')}}</p>
+      @endif
 
     <table class="table table-hover table-dark">
       <thead>
@@ -25,9 +28,9 @@
         <tr>
           <th>{{$post->id}}</th>
           <td>{{$post->user->name}}</td>
-          <td>{{$post->category_id}}</td>
-          <td>{{$post->photo_id}}</td>
-          <td>{{$post->title}}</td>
+          <td>{{$post->category ? $post->category->name : 'No category'}}</td>
+          <td><img height="35" src="{{$post->photo ? $post->photo->file : 'http://via.placeholder.com/450x300' }}" alt=""></td>
+          <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
           <td>{{$post->body}}</td>
           <td>{{$post->created_at->diffForHumans()}}</td>
           <td>{{$post->updated_at->diffForHumans()}}</td>
