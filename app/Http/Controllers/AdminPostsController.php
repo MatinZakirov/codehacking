@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Http\Requests\PostsCreateRequest;
+use App\Http\Requests\PostsRequest;
 use App\Photo;
 use App\Post;
 use Illuminate\Http\Request;
@@ -54,7 +56,7 @@ class AdminPostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostsCreateRequest $request)
+    public function store(PostsRequest $request)
     {
         //
 
@@ -188,6 +190,15 @@ class AdminPostsController extends Controller
         return redirect('/admin/posts');
 
 
+    }
+
+    public function post($slug) {
+
+        $post = Post::findBySlug($slug);
+        $categories = Category::all();
+        $comments = $post->comments()->whereIsActive(1)->get();
+
+        return view('post', compact('post','categories', 'comments'));
     }
 
 

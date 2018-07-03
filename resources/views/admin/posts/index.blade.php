@@ -18,6 +18,7 @@
           <th class="col">Body</th>
           <th class="col">Created</th>
           <th class="col">Updated</th>
+          
 
 
         </tr>
@@ -34,12 +35,20 @@
           <td>{{$post->body}}</td>
           <td>{{$post->created_at->diffForHumans()}}</td>
           <td>{{$post->updated_at->diffForHumans()}}</td>
+          <td><a href="{{route('admin.comments.show', $post->id)}}">View Comments</a></td>
+          <td><a href="{{route('home.post', $post->slug)}}">View Post</a></td>
 
         </tr>
         @endforeach
     @endif
       </tbody>
     </table>
+
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-4">
+          {{$posts->render()}}
+        </div>
+      </div>
 
 
 

@@ -27,7 +27,7 @@
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
             <th scope="col">Status</th>
-            <th scope="col">Delete</th>
+
 
         </tr>
         </thead>
@@ -43,7 +43,7 @@
             <td>{{$user->created_at->diffForHumans()}}</td>
             <td>{{$user->updated_at->diffForHumans()}}</td>
             <td>{{$user->is_active == 1 ? "Active" : "Not Active"}}</td>
-            <td><a href=""></a></td>
+
         </tr>
             @endforeach
             @endif
